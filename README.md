@@ -40,8 +40,32 @@ Tab1: Impact of $\mu$ on Validation Accuracy (Training dataset: train2.txt, Vali
 
 
 ### 1.2 Logistic Regression Model
+Created a logistic regression model for classification tasks, specifically to implement a language identifier that accurately distinguishes between different languages.
+
+#### Softmax Function
+
+The softmax function is utilized to compute probabilities over multiple classes (languages in this case). For a vector of scores \( x \), the softmax function calculates the probability \( \sigma(x)_i \) for each class \( i \) as follows:
+
+$ \sigma(x)_i = \frac{e^{x_i - \max(x)}}{\sum_j e^{x_j - \max(x)}} $
+
+where:
+- $ e $ denotes the exponential function,
+- $ x_i $ is the score for class \( i \),
+- $ \max(x) $ is the maximum score in vector \( x \),
+- $ \sum_j e^{x_j - \max(x)} $ sums over all classes.
+
+The softmax function ensures that the output probabilities sum to 1, making it suitable for multiclass classification tasks. Subtracting $ \max(x) $ improves numerical stability by preventing large exponentiation results, which could lead to overflow or loss of precision.
+
+#### Loss Function
+
+The loss function used here is the negative log likelihood: `Logistic Loss`
+
+$$ \text{loss} = -\sum_{i=1}^{N}   \log(1 + \exp(w^\top x_i))  $$
 
 
+where:
+- $ x_i $ is the feature vector for example \( i \).
+- $ w $ are the model weights.
 
 ## 1. Lab2: Word Translation Using Vector Space
 
