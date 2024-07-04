@@ -67,12 +67,41 @@ where:
 - $ x_i $ is the feature vector for example \( i \).
 - $ w $ are the model weights.
 
-## 1. Lab2: Word Translation Using Vector Space
+## 2. Lab2: Word Translation Using Vector Space
+
+This project implements various operations on word vectors, including cosine similarity computation, nearest neighbor search, analogy, association strength evaluation, WEAT test, word vector alignment, and translation between languages using word embeddings.
+
+#### Cosine Similarity
+
+Cosine similarity between two vectors \( u \) and \( v \) is defined as:
+
+$$ \text{cosine}(u, v) = \frac{u \cdot v}{\|u\| \cdot \|v\|} $$
+
+where:
+- $ \|u\| $ and $ \|v\| $ denote the Euclidean norms of vectors \( u \) and \( v \), respectively.
+
+#### nearest neighbor search: Using a priority queue such as heapq 
+
+This approach ensures efficient computation of nearest neighbors by maintaining a min-heap structure, allowing for rapid insertion of potential neighbors and quick access to the neighbor with the highest cosine similarity among those already added. This efficiency is crucial as it optimizes both time complexity—logarithmic time for push (heappush) and pop (heappop) operations—and memory usage, ensuring that only the top $ k $ neighbors are stored at any given time.
+
+#### analogy
+To find the analogies, we find the nearest neighbour associated with the wordvector d
+$$ d = \frac{c}{\Vert {c} \Vert} + \frac{b}{\Vert {b} \Vert} - \frac{a}{\Vert {a} \Vert}$$
+
+#### translation between languages: English and French
+The `align` function computes a linear mapping between English and French word vectors based on a provided lexicon, using least squares regression `(np.linalg.lstsq)`.The translate function applies this mapping to predict the French translation of an English word by finding its nearest neighbor in the French word vector space.
 
 
-## 1. Lab3: N-gram Model and Stupid Backoff 
+## 3. Lab3: N-gram Model and Stupid Backoff 
 
-Constructed an n-gram language model, incorporating a stupid backoff mechanism to handle rare words (Out of Vocabulary words), thus improving the model's ability to predict sequences of words accurately.
+The project features the implementation of an n-gram language model, enhanced with a stupid backoff mechanism to handle rare words (Out of Vocabulary words). This model, implemented through functions like build_ngram, calculates the probability of word sequences based on their contexts. The get_prob function handles the probability computation for words given their contexts, while perplexity evaluates how well the n-gram model predicts sequences from provided text data. This approach not only improves prediction accuracy but also robustly manages unseen or infrequent words encountered during language modeling tasks.
+
+
+
+
+
+
+
 
 
 
@@ -82,7 +111,7 @@ Constructed an n-gram language model, incorporating a stupid backoff mechanism t
 
 **Language:** Python
 
-**Package:**  numpy, tqdm, Pytorch
+**Package:**  numpy, heapq, tqdm, Pytorch
 
 ### Authors
 
